@@ -1,6 +1,11 @@
 public class Graph {
 
-    Line lines[];
-    Vertice vertices[];
+    public Line lines[];
+    public Vertice vertices[];
 
+    public void graphInit(int len) {
+
+        lines = new Line[len];
+
+    }
 }
