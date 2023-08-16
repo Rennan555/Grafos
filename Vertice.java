@@ -1,12 +1,16 @@
 public class Vertice {
-    
-    private String name;
 
-    public Vertice(String name) {
-        this.name = name;
+    private String nome;
+
+    public Vertice(String nome) {
+        this.nome = nome;
     }
 
-    public String getName() {
-        return this.name;
+    public String getNome() {
+        return this.nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 }

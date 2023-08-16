@@ -6,12 +6,44 @@ public class GraphPath {
     Map<Vertice,Integer> value;
     static Graph g = new Graph();
 
-    public boolean buscaLargura(Vertice orig) {
+    public static void buscaLargura(Vertice orig) {
 
         Queue<Vertice> fila = new LinkedList<>();
         fila.add(orig);
 
-        return false;
+        while(fila.size() > 0) {
+
+            Vertice atual = fila.remove();
+            System.out.println("Vertice - " + atual.getNome());
+
+            for(int i=0;i<g.getLines().length;i++) {
+
+                Line aux = g.getLines()[i];
+                if(aux.org.getNome().equals(atual.getNome())) fila.add(aux.dest);
+
+            }
+
+        }
+    }
+
+        public static void buscaProfundidade(Vertice orig) {
+
+        Stack<Vertice> fila = new Stack<>();
+        fila.add(orig);
+
+        while(fila.size() > 0) {
+
+            Vertice atual = fila.pop();
+            System.out.println("Vertice - " + atual.getNome());
+
+            for(int i=0;i<g.getLines().length;i++) {
+
+                Line aux = g.getLines()[i];
+                if(aux.org.getNome().equals(atual.getNome())) fila.add(aux.dest);
+
+            }
+
+        }
     }
 
     public static boolean isAppointed() {
@@ -19,33 +51,33 @@ public class GraphPath {
         boolean res = false;
         int count = 0;
 
-        for(int j=0;j<g.lines.length;j++) {
+        for(int j=0;j<g.getLines().length;j++) {
 
-            Line atual = g.lines[j];
+            Line atual = g.getLines()[j];
             Vertice org = atual.org;
             Vertice dest = atual.dest;
 
-            for(int i=0;i<g.lines.length;i++) {
+            for(int i=0;i<g.getLines().length;i++) {
 
-                Line temp = g.lines[i];
+                Line temp = g.getLines()[i];
                 Vertice orgT = temp.org;
                 Vertice destT = temp.dest;
 
-                if(orgT.getName().equals(dest.getName()) && destT.getName().equals(org.getName())) ++count;
+                if(orgT.getNome().equals(dest.getNome()) && destT.getNome().equals(org.getNome())) ++count;
 
             }
         }
 
-        if(count==g.lines.length) res = true;
+        if(count==g.getLines().length) res = true;
 
         return res;
     }
 
     public static void main(String[] args) {
 
-        Vertice A = new Vertice("a");
-        Vertice B = new Vertice("b");
-        Vertice C = new Vertice("c");
+        Vertice A = new Vertice("A");
+        Vertice B = new Vertice("B");
+        Vertice C = new Vertice("C");
         Line ab = new Line(A ,B, 0);
         Line ba = new Line(B, A, 0);
         Line bc = new Line(B, C, 0);
@@ -54,8 +86,8 @@ public class GraphPath {
         Vertice[] vertices = {A, B, C};
         Line[] lines = {ab, bc, ba, cb};
 
-        g.vertices = vertices;
-        g.lines = lines;
+        g.setVertices(vertices);
+        g.setLines(lines);
         
         System.out.println(GraphPath.isAppointed());
     }
