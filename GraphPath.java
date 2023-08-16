@@ -31,7 +31,7 @@ public class GraphPath {
                 Vertice orgT = temp.org;
                 Vertice destT = temp.dest;
 
-                if(orgT.equals(dest) && destT.equals(org)) ++count;
+                if(orgT.getName().equals(dest.getName()) && destT.getName().equals(org.getName())) ++count;
 
             }
         }
@@ -43,9 +43,9 @@ public class GraphPath {
 
     public static void main(String[] args) {
 
-        Vertice A = new Vertice();
-        Vertice B = new Vertice();
-        Vertice C = new Vertice();
+        Vertice A = new Vertice("a");
+        Vertice B = new Vertice("b");
+        Vertice C = new Vertice("c");
         Line ab = new Line(A ,B, 0);
         Line ba = new Line(B, A, 0);
         Line bc = new Line(B, C, 0);
